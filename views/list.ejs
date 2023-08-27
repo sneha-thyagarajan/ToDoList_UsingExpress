@@ -1,0 +1,31 @@
+<%- include("partials/header.ejs") %>
+    <div class="mylist">
+        <h3 class="listheading">My List</h3>
+
+
+        <%if(locals.Task && locals.Flag){%>
+
+            <% for( var i = 0; i < Task.length; i++){ %>
+
+                <ul class="taskul">
+                    <form action="/removetask" method="POST" class="taskbox">
+                        <input type="checkbox" name="check" value="<%= Task[i] %>" class="strike">
+                        <input type="text" class="label" name="item" value="<%= Task[i] %>" readonly>
+                        <button class="removebtn"><i class="fa fa-trash"></i></button>
+                    </form>
+                </ul>
+
+                <% } %>
+                    <%} else {%>
+                        <p style="color:aquamarine"> No Tasks!!!</p>
+                        <%}%>
+
+    </div>
+
+    <form action="/addtask" method="POST" class="add">
+        <input type="text" name="newtask" placeholder="Add task" class="addedtask" style="height:50px; width:100%;">
+        <button class="addbtn"><i class="fa fa-plus"></i></button>
+    </form>
+    </body>
+
+    </html>
